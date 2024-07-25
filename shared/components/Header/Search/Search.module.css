@@ -1,0 +1,12 @@
+.search {
+	align-self: center;
+	flex-grow: 1;
+}
+.search input {
+	height: 50px;
+	background-color: #f9f9f9;
+	border-color: transparent;
+}
+.search input:focus-within {
+	border-color: rgb(182, 181, 181);
+}
