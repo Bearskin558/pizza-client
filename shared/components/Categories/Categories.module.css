@@ -1,0 +1,15 @@
+.wrapper {
+	width: 775px;
+}
+.wrapper *[data-active="true"] {
+	color: var(--accent-color);
+}
+.categories {
+	font-weight: 700;
+	background-color: #fafafa;
+
+	height: 42px;
+}
+.categories div label {
+	font-weight: 700;
+}

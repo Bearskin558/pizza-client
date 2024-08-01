@@ -1,22 +1,23 @@
 "use client"
 
-import { Colors } from "@/constants/colors"
-import { Button, Input, rem } from "@mantine/core"
 import clsx from "clsx"
-import { Search02Icon } from "hugeicons-react"
+import CartButton from "./CartButton/CartButton"
 import styles from "./Header.module.css"
 import Logo from "./Logo/Logo"
 import Search from "./Search/Search"
 import SignInBtn from "./SignInBtn/SignInBtn"
 
 const Header = () => {
-	const headerClassName = clsx("container", styles.header)
+	const headerClassName = clsx("container", styles.headerContainer)
 	return (
-		<header className={headerClassName}>
-			<Logo />
-			<Search />
-			<div>
-				<SignInBtn />
+		<header className={styles.header}>
+			<div className={headerClassName}>
+				<Logo />
+				<Search />
+				<div className={styles.btnBlock}>
+					<SignInBtn />
+					<CartButton />
+				</div>
 			</div>
 		</header>
 	)

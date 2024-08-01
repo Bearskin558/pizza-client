@@ -14,6 +14,7 @@ const theme = createTheme({
 		lg: rem(22),
 		xl: rem(36),
 	},
+	cursorType: "pointer",
 	headings: {
 		sizes: {
 			h1: {
