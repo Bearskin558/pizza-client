@@ -12,6 +12,7 @@ model Pizza {
   id          String       @id @default(cuid())
   name        String
   description String
+  imageUrl    String
   sizes       PizzaSize[]
   ingredients Ingredient[]
   createdAt   DateTime     @default(now())

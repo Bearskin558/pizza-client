@@ -22,6 +22,7 @@ const up = async () => {
 				data: {
 					description: pizza.description,
 					name: pizza.name,
+					imageUrl: pizza.imageUrl,
 					ingredients: { connect: pizza.ingredients },
 				},
 			})

@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Checkbox, Text } from "@mantine/core"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./IngredientsFilter.module.css"
 
 const data = ["Сырный соус", "Моцарелла", "Чеснок", "Солённые огурчики", "Красный лук", "Томаты"]

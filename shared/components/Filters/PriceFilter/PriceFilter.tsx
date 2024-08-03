@@ -54,6 +54,7 @@ const PriceFilter = () => {
 				value={[minValue, maxValue]}
 				minRange={100}
 				onChange={e => onChangeInputSlider(e)}
+				step={10}
 			/>
 		</div>
 	)

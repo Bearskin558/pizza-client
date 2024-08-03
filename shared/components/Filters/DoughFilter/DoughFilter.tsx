@@ -1,7 +1,13 @@
+"use client"
+
 import { Group, Radio, RadioGroup, Text } from "@mantine/core"
 import styles from "./DoughFilter.module.css"
 
 const DoughFilter = () => {
+	const onChangeHandler = (e: string) => {
+		console.log(e)
+	}
+
 	return (
 		<div className={styles.doughFilter}>
 			<Text
@@ -10,7 +16,7 @@ const DoughFilter = () => {
 			>
 				Тип теста:
 			</Text>
-			<RadioGroup>
+			<RadioGroup onChange={e => onChangeHandler(e)}>
 				<Group className={styles.group}>
 					<Radio
 						value="thin"

@@ -1,5 +1,4 @@
 import { Button, Title } from "@mantine/core"
-import DoughFilter from "./DoughFilter/DoughFilter"
 import styles from "./Filters.module.css"
 import IngredientsFilter from "./IngredientsFilter/IngredientsFilter"
 import PriceFilter from "./PriceFilter/PriceFilter"
@@ -15,7 +14,6 @@ const Filters = () => {
 			</Title>
 			<PriceFilter />
 			<IngredientsFilter />
-			<DoughFilter />
 			<Button
 				h={50}
 				fz={16}
