@@ -7,8 +7,8 @@ import styles from "./page.module.css"
 
 export default async function Home() {
 	const baseUrl = process.env.NEXT_API_URL
-	console.log(baseUrl)
-	const pizzas = (await (await fetch(baseUrl + "/pizzas", { next: { revalidate: 10 } })).json()) as Pizza[]
+	const pizzas = (await (await fetch(baseUrl + "/pizzas", { next: { revalidate: 3600 } })).json()) as Pizza[]
+
 	return (
 		<main className={styles.main}>
 			<div className="container">
@@ -16,16 +16,15 @@ export default async function Home() {
 					size="h1"
 					className={styles.title}
 				>
-					Все пиццы
+					Пиццы
 				</Title>
 				<div>
 					<Categories />
 				</div>
 				<div className={styles.content}>
 					<Filters />
-					<div>
-						<PizzasContainer pizzas={pizzas} />
-					</div>
+
+					<PizzasContainer pizzas={pizzas} />
 				</div>
 			</div>
 		</main>

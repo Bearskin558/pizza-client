@@ -1,9 +1,31 @@
+"use client"
+
+import { useGetAllIngredients } from "@/hooks/api/ingredients/useGetAllIngredients"
+import { useFilterStore } from "@/shared/store/filters"
 import { Button, Title } from "@mantine/core"
+import { useState } from "react"
 import styles from "./Filters.module.css"
 import IngredientsFilter from "./IngredientsFilter/IngredientsFilter"
 import PriceFilter from "./PriceFilter/PriceFilter"
 
 const Filters = () => {
+	const { data: ingredients, isLoading, error } = useGetAllIngredients()
+	const [setMinPriceStore, setMaxPriceStore, setIngredients] = useFilterStore(state => [
+		state.setMinPrice,
+		state.setMaxPrice,
+		state.setIngredients,
+	])
+	const [minPrice, setMinPrice] = useState(0)
+	const [maxPrice, setMaxPrice] = useState(2000)
+	const [checkedIngredients, setCheckedIngredients] = useState<string[]>([])
+
+	const applyHandler = () => {
+		setMinPriceStore(minPrice)
+		setMaxPriceStore(maxPrice)
+		setIngredients(checkedIngredients)
+		console.log(checkedIngredients)
+	}
+
 	return (
 		<div className={styles.filters}>
 			<Title
@@ -12,11 +34,21 @@ const Filters = () => {
 			>
 				Фильтрация
 			</Title>
-			<PriceFilter />
-			<IngredientsFilter />
+			<PriceFilter
+				minPrice={minPrice}
+				maxPrice={maxPrice}
+				setMaxPrice={setMaxPrice}
+				setMinPrice={setMinPrice}
+			/>
+			<IngredientsFilter
+				ingredients={ingredients}
+				setIngredients={setCheckedIngredients}
+				checkedIngredients={checkedIngredients}
+			/>
 			<Button
 				h={50}
 				fz={16}
+				onClick={applyHandler}
 			>
 				Применить
 			</Button>

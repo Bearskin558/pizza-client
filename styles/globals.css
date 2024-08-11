@@ -4,6 +4,8 @@ body {
 	font-size: 16px;
 	line-height: 22px;
 	--accent-color: #f4511e;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .container {

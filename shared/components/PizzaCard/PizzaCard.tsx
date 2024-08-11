@@ -26,8 +26,8 @@ const PizzasCard = ({ pizza }: Props) => {
 				/>
 			</Box>
 			<Text
-				fw={700}
-				fz={22}
+				fw={600}
+				fz={20}
 				mb={7}
 			>
 				{pizza.name}
@@ -42,7 +42,7 @@ const PizzasCard = ({ pizza }: Props) => {
 				{pizza.description}
 			</Text>
 			<Box className={styles.priceBlock}>
-				<Text fw={700}>
+				<Text fw={600}>
 					от <span>{pizza.sizes[0].price}</span> ₽
 				</Text>
 				<Button

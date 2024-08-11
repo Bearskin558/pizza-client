@@ -5,6 +5,7 @@ export interface Pizza {
 	imageUrl: string
 	sizes: Size[]
 	ingredients: Ingredient[]
+	categories: Category[]
 }
 
 interface Size {
@@ -12,9 +13,10 @@ interface Size {
 	price: number
 }
 
-interface Ingredient {
+export interface Ingredient {
 	id: string
 	name: string
 }
 
 type SizeName = "SMALL" | "MEDIUM" | "LARGE"
+export type Category = "ALL" | "MEAT" | "SPICY" | "SWEET" | "VEGAN" | "CHICKEN"

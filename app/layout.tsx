@@ -1,4 +1,5 @@
 import Header from "@/shared/components/Header"
+import QueryProvider from "@/shared/components/QueryProvider/QueryProvider"
 import { ColorSchemeScript, MantineProvider } from "@mantine/core"
 import "@mantine/core/styles.css"
 import type { Metadata } from "next"
@@ -24,19 +25,21 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
-			<head>
-				<ColorSchemeScript />
-			</head>
-			<body className={nunito.className}>
-				<MantineProvider
-					theme={theme}
-					defaultColorScheme="light"
-				>
-					<Header />
-					{children}
-				</MantineProvider>
-			</body>
-		</html>
+		<QueryProvider>
+			<html lang="en">
+				<head>
+					<ColorSchemeScript />
+				</head>
+				<body className={nunito.className}>
+					<MantineProvider
+						theme={theme}
+						defaultColorScheme="light"
+					>
+						<Header />
+						{children}
+					</MantineProvider>
+				</body>
+			</html>
+		</QueryProvider>
 	)
 }

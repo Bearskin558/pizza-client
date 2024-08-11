@@ -5,21 +5,25 @@ import { debounce } from "lodash"
 import { ChangeEvent, useState } from "react"
 import styles from "./PriceFilter.module.css"
 
-const PriceFilter = () => {
-	const [minValue, setMinValue] = useState(0)
-	const [maxValue, setMaxValue] = useState(2000)
+interface Props {
+	minPrice: number
+	maxPrice: number
+	setMinPrice: (value: number) => void
+	setMaxPrice: (value: number) => void
+}
 
+const PriceFilter = ({ minPrice, maxPrice, setMinPrice, setMaxPrice }: Props) => {
 	const onChangeInputMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		setMinValue(+e.target.value)
+		setMinPrice(+e.target.value)
 	}
 
 	const onChangeInputMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		setMaxValue(+e.target.value)
+		setMaxPrice(+e.target.value)
 	}
 
 	const onChangeInputSlider = (values: RangeSliderValue) => {
-		setMinValue(values[0])
-		setMaxValue(values[1])
+		setMinPrice(values[0])
+		setMaxPrice(values[1])
 	}
 
 	return (
@@ -32,14 +36,14 @@ const PriceFilter = () => {
 			</Text>
 			<div className={styles.inputsBlock}>
 				<Input
-					value={minValue}
+					value={minPrice}
 					rightSection={"₽"}
 					type="number"
 					radius="md"
 					onChange={onChangeInputMinValueHandler}
 				/>
 				<Input
-					value={maxValue}
+					value={maxPrice}
 					rightSection={"₽"}
 					type="number"
 					radius="md"
@@ -51,7 +55,7 @@ const PriceFilter = () => {
 				min={0}
 				max={2000}
 				label={null}
-				value={[minValue, maxValue]}
+				value={[minPrice, maxPrice]}
 				minRange={100}
 				onChange={e => onChangeInputSlider(e)}
 				step={10}

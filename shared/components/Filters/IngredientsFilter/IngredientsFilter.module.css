@@ -3,3 +3,9 @@
 	flex-direction: column;
 	gap: 15px;
 }
+.group > div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 15px;
+}
