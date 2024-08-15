@@ -1,6 +1,5 @@
 "use client"
 
-import { useGetAllIngredients } from "@/hooks/api/ingredients/useGetAllIngredients"
 import { useFilterStore } from "@/shared/store/filters"
 import { Button, Title } from "@mantine/core"
 import { useState } from "react"
@@ -9,7 +8,6 @@ import IngredientsFilter from "./IngredientsFilter/IngredientsFilter"
 import PriceFilter from "./PriceFilter/PriceFilter"
 
 const Filters = () => {
-	const { data: ingredients, isLoading, error } = useGetAllIngredients()
 	const [setMinPriceStore, setMaxPriceStore, setIngredients] = useFilterStore(state => [
 		state.setMinPrice,
 		state.setMaxPrice,
@@ -41,7 +39,6 @@ const Filters = () => {
 				setMinPrice={setMinPrice}
 			/>
 			<IngredientsFilter
-				ingredients={ingredients}
 				setIngredients={setCheckedIngredients}
 				checkedIngredients={checkedIngredients}
 			/>

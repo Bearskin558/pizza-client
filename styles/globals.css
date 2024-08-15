@@ -6,6 +6,7 @@ body {
 	--accent-color: #f4511e;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	scroll-behavior: smooth;
 }
 
 .container {

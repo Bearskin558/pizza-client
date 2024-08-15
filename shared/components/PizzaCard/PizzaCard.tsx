@@ -1,6 +1,7 @@
 import { Pizza } from "@/types/pizzas"
 import { Box, Button, Text, rem } from "@mantine/core"
-import { Add01Icon, Pulse01Icon } from "hugeicons-react"
+import { motion } from "framer-motion"
+import { Add01Icon } from "hugeicons-react"
 import Image from "next/image"
 import { Colors } from "@/constants/colors"
 import styles from "./PizzaCard.module.css"
@@ -11,7 +12,13 @@ interface Props {
 
 const PizzasCard = ({ pizza }: Props) => {
 	return (
-		<div className={styles.card}>
+		<motion.div
+			className={styles.card}
+			layout
+			initial={{ scale: 1, opacity: 0 }}
+			animate={{ scale: 1, opacity: 1 }}
+			transition={{ duration: 0.2 }}
+		>
 			<Box
 				className={styles.imgBlock}
 				mb={15}
@@ -23,6 +30,7 @@ const PizzasCard = ({ pizza }: Props) => {
 					alt={pizza.name}
 					width={212}
 					height={212}
+					loading="lazy"
 				/>
 			</Box>
 			<Text
@@ -60,7 +68,7 @@ const PizzasCard = ({ pizza }: Props) => {
 					Добавить
 				</Button>
 			</Box>
-		</div>
+		</motion.div>
 	)
 }
 

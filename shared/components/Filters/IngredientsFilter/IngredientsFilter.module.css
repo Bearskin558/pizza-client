@@ -3,7 +3,8 @@
 	flex-direction: column;
 	gap: 15px;
 }
-.group > div {
+.group > div,
+.skeleton {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
