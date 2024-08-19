@@ -10,6 +10,7 @@ interface FilterState {
 	setMaxPrice: (price: number) => void
 	setMinPrice: (price: number) => void
 	setIngredients: (ingredients: string[]) => void
+	resetFilters: () => void
 }
 
 export const useFilterStore = create<FilterState>((set, get) => ({
@@ -21,4 +22,11 @@ export const useFilterStore = create<FilterState>((set, get) => ({
 	setMinPrice: price => set({ minPrice: price }),
 	setMaxPrice: price => set({ maxPrice: price }),
 	setIngredients: ingredients => set({ ingredients: ingredients }),
+	resetFilters: () => {
+		set({
+			ingredients: [],
+			minPrice: 0,
+			maxPrice: 2000,
+		})
+	},
 }))

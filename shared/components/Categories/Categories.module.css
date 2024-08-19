@@ -6,9 +6,10 @@
 }
 .categories {
 	font-weight: 700;
-	background-color: #fafafa;
-
 	height: 42px;
+	label {
+		height: 100%;
+	}
 }
 .categories div label {
 	font-weight: 700;

@@ -23,7 +23,6 @@ export default async function Home() {
 				</div>
 				<div className={styles.content}>
 					<Filters />
-
 					<PizzasContainer pizzas={pizzas} />
 				</div>
 			</div>

@@ -14,17 +14,13 @@ const PizzasCard = ({ pizza }: Props) => {
 	return (
 		<motion.div
 			className={styles.card}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ scale: 0, opacity: 0 }}
+			transition={{ type: "sping", stiffness: 600, damping: 20 }}
 			layout
-			initial={{ scale: 1, opacity: 0 }}
-			animate={{ scale: 1, opacity: 1 }}
-			transition={{ duration: 0.2 }}
 		>
-			<Box
-				className={styles.imgBlock}
-				mb={15}
-				bg={"#fff7ee"}
-				h={260}
-			>
+			<div className={styles.imgBlock}>
 				<Image
 					src={pizza.imageUrl}
 					alt={pizza.name}
@@ -32,20 +28,12 @@ const PizzasCard = ({ pizza }: Props) => {
 					height={212}
 					loading="lazy"
 				/>
-			</Box>
+			</div>
+
+			<Text className={styles.cardName}>{pizza.name}</Text>
 			<Text
-				fw={600}
-				fz={20}
-				mb={7}
-			>
-				{pizza.name}
-			</Text>
-			<Text
-				fz={14}
+				className={styles.cardDescription}
 				c="secondaryText"
-				mb={13}
-				lh={rem(21)}
-				h={105}
 			>
 				{pizza.description}
 			</Text>
@@ -54,16 +42,14 @@ const PizzasCard = ({ pizza }: Props) => {
 					от <span>{pizza.sizes[0].price}</span> ₽
 				</Text>
 				<Button
+					className={styles.addBtn}
+					variant="outline"
 					leftSection={
 						<Add01Icon
-							size={12}
+							size={15}
 							color={Colors.ACCENT}
 						/>
 					}
-					variant="light"
-					fz={14}
-					h={42}
-					w={125}
 				>
 					Добавить
 				</Button>

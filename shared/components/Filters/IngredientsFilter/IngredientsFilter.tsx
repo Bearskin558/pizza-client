@@ -15,9 +15,6 @@ interface Props {
 }
 const IngredientsFilter = ({ setIngredients, checkedIngredients }: Props) => {
 	const { data: ingredients, isLoading, error, isFetched } = useGetAllIngredients()
-	console.log(1)
-	console.log(isLoading)
-	console.log(isFetched)
 	const checkHandler = (str: string[]) => {
 		setIngredients(str)
 	}

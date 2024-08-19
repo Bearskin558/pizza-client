@@ -33,7 +33,7 @@ export default function RootLayout({
 				<body className={nunito.className}>
 					<MantineProvider
 						theme={theme}
-						defaultColorScheme="light"
+						defaultColorScheme="dark"
 					>
 						<Header />
 						{children}

@@ -3,6 +3,7 @@
 import { useFilterStore } from "@/shared/store/filters"
 import { Pizza } from "@/types/pizzas"
 import { toFilterPizza } from "@/utils/toFilterPizzas"
+import { AnimatePresence } from "framer-motion"
 import PizzaCard from "../PizzaCard"
 import styles from "./PizzasContainer.module.css"
 
@@ -20,14 +21,16 @@ const PizzasContainer = ({ pizzas }: Props) => {
 		])
 		const filterdPizzas = toFilterPizza(pizzas, currentCategory, minPrice, maxPrice, ingredients)
 		return (
-			<div className={styles.container}>
-				{filterdPizzas.map(pizza => (
-					<PizzaCard
-						pizza={pizza}
-						key={pizza.id}
-					/>
-				))}
-			</div>
+			<AnimatePresence>
+				<div className={styles.container}>
+					{filterdPizzas.map(pizza => (
+						<PizzaCard
+							pizza={pizza}
+							key={pizza.id}
+						/>
+					))}
+				</div>
+			</AnimatePresence>
 		)
 	}
 }
