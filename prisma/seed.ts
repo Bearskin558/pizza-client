@@ -1,5 +1,5 @@
 import ingredients from "./ingredients"
-import pizzas, { Size } from "./pizzas"
+import pizzas, { PizzaSizeSeed } from "./pizzas"
 import prisma from "./prisma-client"
 
 const up = async () => {
@@ -24,13 +24,14 @@ const up = async () => {
 					name: pizza.name,
 					imageUrl: pizza.imageUrl,
 					ingredients: { connect: pizza.ingredients },
+					categories: pizza.categories,
 				},
 			})
 		}),
 	)
 	const createdPizzas = await prisma.pizza.findMany()
 
-	type SizeData = Size & { pizzaId: string }
+	type SizeData = PizzaSizeSeed & { pizzaId: string }
 
 	const pizzaSizeData = pizzas.reduce<SizeData[]>((accum, pizza) => {
 		const pizzaId = createdPizzas.find(item => item.name === pizza.name)?.id!

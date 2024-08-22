@@ -17,6 +17,7 @@ model Pizza {
   ingredients Ingredient[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  categories  Category[]
 }
 
 model PizzaSize {
@@ -43,4 +44,12 @@ enum Size {
   SMALL
   MEDIUM
   LARGE
+}
+
+enum Category {
+  MEAT
+  SPICY
+  SWEET
+  VEGAN
+  CHICKEN
 }

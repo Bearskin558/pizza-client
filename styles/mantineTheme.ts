@@ -16,6 +16,8 @@ const theme = createTheme({
 	},
 	cursorType: "pointer",
 	headings: {
+		fontFamily: "Nunito, sans-serif",
+
 		sizes: {
 			h1: {
 				fontWeight: "800",
@@ -55,5 +57,6 @@ const theme = createTheme({
 			},
 		}),
 	},
+	fontFamily: "Nunito, sans-serif",
 })
 export default theme

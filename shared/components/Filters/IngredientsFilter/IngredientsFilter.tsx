@@ -1,6 +1,6 @@
 "use client"
 
-import { useGetAllIngredients } from "@/hooks/api/ingredients/useGetAllIngredients"
+import { useIngredientsStore } from "@/shared/store/ingredients"
 import { Ingredient } from "@/types/pizzas"
 import { Button, Checkbox, Skeleton, Text } from "@mantine/core"
 import { AnimatePresence, motion } from "framer-motion"
@@ -14,7 +14,7 @@ interface Props {
 	checkedIngredients: string[]
 }
 const IngredientsFilter = ({ setIngredients, checkedIngredients }: Props) => {
-	const { data: ingredients, isLoading, error, isFetched } = useGetAllIngredients()
+	const ingredients = useIngredientsStore(state => state.ingredients)
 	const checkHandler = (str: string[]) => {
 		setIngredients(str)
 	}
@@ -40,7 +40,7 @@ const IngredientsFilter = ({ setIngredients, checkedIngredients }: Props) => {
 				Ингредиенты:
 			</Text>
 
-			{isFetched && (
+			{ingredients.length !== 0 && (
 				<Checkbox.Group
 					onChange={e => checkHandler(e)}
 					className={styles.group}
@@ -49,13 +49,11 @@ const IngredientsFilter = ({ setIngredients, checkedIngredients }: Props) => {
 					<AnimatePresence>{checkboxes}</AnimatePresence>
 				</Checkbox.Group>
 			)}
-			{!isFetched && (
+			{ingredients.length === 0 && (
 				<div className={styles.skeleton}>
-					<AnimatePresence>
-						{new Array(4).fill("1").map((item, i) => (
-							<IngredientSkeleton key={`skeleton item ${i}`} />
-						))}
-					</AnimatePresence>
+					{new Array(4).fill("1").map((_, i) => (
+						<IngredientSkeleton key={`skeleton item ${i}`} />
+					))}
 				</div>
 			)}
 			<Button

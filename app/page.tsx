@@ -1,14 +1,14 @@
 import Categories from "@/shared/components/Categories"
 import Filters from "@/shared/components/Filters"
 import PizzasContainer from "@/shared/components/PizzasContainer/PizzasContainer"
-import { Pizza } from "@/types/pizzas"
 import { Title } from "@mantine/core"
+import { Suspense } from "react"
+import { getAllIngredients, getAllPizzas } from "./api/instance"
 import styles from "./page.module.css"
 
 export default async function Home() {
-	const baseUrl = process.env.NEXT_API_URL
-	const pizzas = (await (await fetch(baseUrl + "/pizzas", { next: { revalidate: 3600 } })).json()) as Pizza[]
-
+	const ingredients = await getAllIngredients()
+	const pizzas = await getAllPizzas()
 	return (
 		<main className={styles.main}>
 			<div className="container">
@@ -22,8 +22,10 @@ export default async function Home() {
 					<Categories />
 				</div>
 				<div className={styles.content}>
-					<Filters />
-					<PizzasContainer pizzas={pizzas} />
+					<Filters ingredients={ingredients} />
+					<Suspense fallback={<p>загрузка</p>}>
+						<PizzasContainer pizzas={pizzas} />
+					</Suspense>
 				</div>
 			</div>
 		</main>

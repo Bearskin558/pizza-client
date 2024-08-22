@@ -25,21 +25,19 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<QueryProvider>
-			<html lang="en">
-				<head>
-					<ColorSchemeScript />
-				</head>
-				<body className={nunito.className}>
-					<MantineProvider
-						theme={theme}
-						defaultColorScheme="dark"
-					>
-						<Header />
-						{children}
-					</MantineProvider>
-				</body>
-			</html>
-		</QueryProvider>
+		<html lang="en">
+			<head>
+				<ColorSchemeScript defaultColorScheme="dark" />
+			</head>
+			<body className={nunito.className}>
+				<MantineProvider
+					theme={theme}
+					defaultColorScheme="dark"
+				>
+					<Header />
+					<QueryProvider>{children}</QueryProvider>
+				</MantineProvider>
+			</body>
+		</html>
 	)
 }

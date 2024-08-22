@@ -22,6 +22,7 @@
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 25px;
+	position: relative;
 }
 .priceBlock {
 	display: flex;
@@ -34,7 +35,18 @@
 .addBtn {
 	width: 125px;
 	height: 42px;
-	span {
+	& span {
 		font-size: 14px;
 	}
+}
+.imgSkeleton {
+	position: absolute;
+	top: 0px;
+	left: 32px;
+	z-index: 10;
+	width: 200px;
+	height: 200px;
+	border-radius: 110px;
+	transition: all 0.3s ease-in-out;
+	/* opacity: 0.3; */
 }

@@ -1,6 +1,8 @@
 "use client"
 
 import { useFilterStore } from "@/shared/store/filters"
+import { useIngredientsStore } from "@/shared/store/ingredients"
+import { Ingredient } from "@/types/pizzas"
 import { toCompareFilterStores } from "@/utils/toComapreStores"
 import { toCompareFilterStoreWithInitial } from "@/utils/toCompareFilterStoreWithInitial"
 import { Button, Title } from "@mantine/core"
@@ -9,7 +11,13 @@ import styles from "./Filters.module.css"
 import IngredientsFilter from "./IngredientsFilter/IngredientsFilter"
 import PriceFilter from "./PriceFilter/PriceFilter"
 
-const Filters = () => {
+interface Props {
+	ingredients: Ingredient[]
+}
+
+const Filters = ({ ingredients }: Props) => {
+	const setIngredientsToStore = useIngredientsStore(state => state.setIngredients)
+	setIngredientsToStore(ingredients)
 	const [
 		setMinPriceStore,
 		setMaxPriceStore,

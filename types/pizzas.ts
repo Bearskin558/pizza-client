@@ -16,6 +16,8 @@ interface Size {
 export interface Ingredient {
 	id: string
 	name: string
+	price: number
+	imageUrl: string
 }
 
 type SizeName = "SMALL" | "MEDIUM" | "LARGE"

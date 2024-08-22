@@ -1,4 +1,7 @@
-const ingredients = [
+import { Ingredient } from "@prisma/client"
+
+type IngredientSeed = Pick<Ingredient, "name" | "price" | "imageUrl">
+const ingredients: IngredientSeed[] = [
 	{
 		name: "Сырный бортик",
 		price: 179,

@@ -7,10 +7,8 @@
 .categories {
 	font-weight: 700;
 	height: 42px;
-	label {
+	& label {
 		height: 100%;
+		font-weight: 700;
 	}
-}
-.categories div label {
-	font-weight: 700;
 }

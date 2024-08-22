@@ -12,27 +12,26 @@ interface Props {
 }
 
 const PizzasContainer = ({ pizzas }: Props) => {
-	if (pizzas.length > 0) {
-		const [currentCategory, minPrice, maxPrice, ingredients] = useFilterStore(state => [
-			state.category,
-			state.minPrice,
-			state.maxPrice,
-			state.ingredients,
-		])
-		const filterdPizzas = toFilterPizza(pizzas, currentCategory, minPrice, maxPrice, ingredients)
-		return (
+	const [currentCategory, minPrice, maxPrice, ingredients] = useFilterStore(state => [
+		state.category,
+		state.minPrice,
+		state.maxPrice,
+		state.ingredients,
+	])
+	const filterdPizzas = toFilterPizza(pizzas, currentCategory, minPrice, maxPrice, ingredients)
+
+	return (
+		<div className={styles.container}>
 			<AnimatePresence>
-				<div className={styles.container}>
-					{filterdPizzas.map(pizza => (
-						<PizzaCard
-							pizza={pizza}
-							key={pizza.id}
-						/>
-					))}
-				</div>
+				{filterdPizzas.map(pizza => (
+					<PizzaCard
+						pizza={pizza}
+						key={pizza.id}
+					/>
+				))}
 			</AnimatePresence>
-		)
-	}
+		</div>
+	)
 }
 
 export default PizzasContainer
