@@ -2,13 +2,15 @@ import Categories from "@/shared/components/Categories"
 import Filters from "@/shared/components/Filters"
 import PizzasContainer from "@/shared/components/PizzasContainer/PizzasContainer"
 import { Title } from "@mantine/core"
-import { Suspense } from "react"
-import { getAllIngredients, getAllPizzas } from "./api/instance"
+import { getAllIngredients } from "./api/fetch/getAllIngredients"
+import { getAllPizzas } from "./api/fetch/getAllPizzas"
 import styles from "./page.module.css"
 
 export default async function Home() {
-	const ingredients = await getAllIngredients()
-	const pizzas = await getAllPizzas()
+	const { data: ingredients } = await getAllIngredients()
+	const { data: pizzas } = await getAllPizzas()
+
+	pizzas.concat
 	return (
 		<main className={styles.main}>
 			<div className="container">
@@ -23,9 +25,7 @@ export default async function Home() {
 				</div>
 				<div className={styles.content}>
 					<Filters ingredients={ingredients} />
-					<Suspense fallback={<p>загрузка</p>}>
-						<PizzasContainer pizzas={pizzas} />
-					</Suspense>
+					<PizzasContainer pizzas={pizzas} />
 				</div>
 			</div>
 		</main>
