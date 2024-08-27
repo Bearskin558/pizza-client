@@ -4,6 +4,7 @@
 	transition: all 0.25s ease-in-out;
 	padding: 15px;
 	border-radius: 10px;
+	height: fit-content;
 }
 .cardName {
 	font-weight: 600;
