@@ -1,11 +1,11 @@
 import Header from "@/shared/components/Header"
-import QueryProvider from "@/shared/components/QueryProvider/QueryProvider"
+import Providers from "@/shared/components/Providers/Providers"
 import { ColorSchemeScript, MantineProvider } from "@mantine/core"
 import "@mantine/core/styles.css"
 import type { Metadata } from "next"
 import { Nunito } from "next/font/google"
+import { ReactNode } from "react"
 import "../styles/globals.css"
-import theme from "../styles/mantineTheme"
 import "../styles/reset.css"
 
 const nunito = Nunito({
@@ -29,15 +29,7 @@ export default function RootLayout({
 			<head>
 				<ColorSchemeScript defaultColorScheme="dark" />
 			</head>
-			<body className={nunito.className}>
-				<MantineProvider
-					theme={theme}
-					defaultColorScheme="dark"
-				>
-					<Header />
-					<QueryProvider>{children}</QueryProvider>
-				</MantineProvider>
-			</body>
+			<body className={nunito.className}>{<Providers>{children}</Providers>}</body>
 		</html>
 	)
 }

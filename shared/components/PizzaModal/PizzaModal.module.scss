@@ -44,16 +44,22 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 	row-gap: 20px;
-	&::-webkit-scrollbar-thumb {
-		background-color: var(--accent-color);
-		border-radius: 10px;
-		cursor: pointer;
-	}
-	&::-webkit-scrollbar {
-		width: 6px;
-		background-color: #1a1a1a;
-	}
+	scrollbar-width: thin;
+	scrollbar-color: var(--accent-color) #1a1a1a;
 }
+.ingredientsBlock::-webkit-scrollbar-thumb {
+	width: 10px;
+	cursor: pointer;
+	background-color: var(--accent-color);
+}
+.ingredientsBlock::-webkit-scrollbar {
+	width: 6px;
+	background-color: #1a1a1a;
+}
+// .ingredientsBlock::-webkit-scrollbar-button {
+// 	background-color: transparent;
+// }
+
 .ingredientsTitle {
 	margin-bottom: 5px;
 }

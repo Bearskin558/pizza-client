@@ -1,6 +1,8 @@
 import prisma from "@/prisma/prisma-client"
 import { NextResponse } from "next/server"
 
+export const revalidate = 10
+
 export async function GET(request: Request) {
 	const pizzas = await prisma.pizza.findMany({
 		select: {

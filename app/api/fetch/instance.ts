@@ -17,6 +17,7 @@ class HttpClient {
 	}
 
 	get<T>(url: string, nextConfig?: NextFetchRequestConfig) {
+		console.warn(`GET ${url}`)
 		return this.request<T>(url, "GET", nextConfig)
 	}
 }

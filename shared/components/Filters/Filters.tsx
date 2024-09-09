@@ -6,7 +6,7 @@ import { Ingredient } from "@/types/pizzas"
 import { toCompareFilterStores } from "@/utils/toComapreStores"
 import { toCompareFilterStoreWithInitial } from "@/utils/toCompareFilterStoreWithInitial"
 import { Button, Title } from "@mantine/core"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./Filters.module.css"
 import IngredientsFilter from "./IngredientsFilter/IngredientsFilter"
 import PriceFilter from "./PriceFilter/PriceFilter"
@@ -17,7 +17,6 @@ interface Props {
 
 const Filters = ({ ingredients }: Props) => {
 	const setIngredientsToStore = useIngredientsStore(state => state.setIngredients)
-	setIngredientsToStore(ingredients)
 	const [
 		setMinPriceStore,
 		setMaxPriceStore,
@@ -60,6 +59,10 @@ const Filters = ({ ingredients }: Props) => {
 		setMaxPrice(2000)
 		setCheckedIngredients([])
 	}
+
+	useEffect(() => {
+		setIngredientsToStore(ingredients)
+	}, [])
 
 	return (
 		<div className={styles.filters}>

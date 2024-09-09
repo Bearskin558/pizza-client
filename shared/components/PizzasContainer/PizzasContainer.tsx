@@ -1,9 +1,10 @@
 "use client"
 
 import { useFilterStore } from "@/shared/store/filters"
+import { usePizzasStore } from "@/shared/store/pizzasStore"
 import { Pizza } from "@/types/pizzas"
 import { toFilterPizza } from "@/utils/toFilterPizzas"
-import { AnimatePresence } from "framer-motion"
+import { useEffect } from "react"
 import PizzaCard from "../PizzaCard"
 import styles from "./PizzasContainer.module.css"
 
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const PizzasContainer = ({ pizzas }: Props) => {
+	const setPizzas = usePizzasStore(state => state.setPizzas)
 	const [currentCategory, minPrice, maxPrice, ingredients] = useFilterStore(state => [
 		state.category,
 		state.minPrice,
@@ -20,16 +22,18 @@ const PizzasContainer = ({ pizzas }: Props) => {
 	])
 	const filterdPizzas = toFilterPizza(pizzas, currentCategory, minPrice, maxPrice, ingredients)
 
+	useEffect(() => {
+		setPizzas(filterdPizzas)
+	}, [])
+
 	return (
 		<div className={styles.container}>
-			<AnimatePresence>
-				{filterdPizzas.map(pizza => (
-					<PizzaCard
-						pizza={pizza}
-						key={pizza.id}
-					/>
-				))}
-			</AnimatePresence>
+			{filterdPizzas.map(pizza => (
+				<PizzaCard
+					pizza={pizza}
+					key={pizza.id}
+				/>
+			))}
 		</div>
 	)
 }

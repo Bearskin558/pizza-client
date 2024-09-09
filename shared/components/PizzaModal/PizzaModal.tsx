@@ -1,17 +1,19 @@
+"use client"
+
 import { useIngredientsStore } from "@/shared/store/ingredients"
 import Modal from "@/shared/ui/Modal/Modal"
 import { Ingredient, Pizza, PizzaSizeName } from "@/types/pizzas"
 import { Button, SegmentedControl, Text, Title } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
 import { AnimatePresence } from "framer-motion"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import IngredientCard from "../IngredientCard/IngredientCard"
 import styles from "./PizzaModal.module.scss"
 import PizzaPrice from "./PizzaPrice"
 
 interface Props {
-	isOpen: boolean
-	onClose: () => void
 	pizza: Pizza
 }
 
@@ -37,7 +39,9 @@ const sizeData: SizeData[] = [
 	{ label: "35 см", value: "LARGE" },
 ]
 
-const PizzaModal = ({ isOpen, onClose, pizza }: Props) => {
+const PizzaModal = ({ pizza }: Props) => {
+	const router = useRouter()
+	const [isOpen, { close }] = useDisclosure(true)
 	const ingredients = useIngredientsStore(state => state.ingredients)
 	const [checkedIngredients, setCheckedIngredients] = useState<Ingredient[]>([])
 	const [currentSize, setCurrentSize] = useState<PizzaSizeName>("SMALL")
@@ -68,8 +72,8 @@ const PizzaModal = ({ isOpen, onClose, pizza }: Props) => {
 		))
 	return (
 		<Modal
+			onClose={() => router.back()}
 			isOpen={isOpen}
-			onClose={onClose}
 		>
 			<div className={styles.container}>
 				<div className={styles.imageBlock}>
